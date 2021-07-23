@@ -44,6 +44,7 @@ code {
 
  .pizza-build{
   text-align: center;
+  margin: 10%;
 }
 
 .radio-btns{
@@ -56,3 +57,15 @@ code {
   flex-direction: column;
   flex-wrap: wrap;
 }
+
+.special-instructions{
+  display:flex;
+  flex-direction: column;
+}
+
+.order-container{
+  margin-left: 30%;
+  margin-bottom: 10%;
+}
+
+

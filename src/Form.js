@@ -3,17 +3,32 @@ import {Link} from 'react-router-dom'
 
 
 export default function Form(props){
+    const {
+        values,
+        submit,
+        change,
+    } = props
 
 
+    const onSubmit = evt => {
+        evt.preventDefault()
+        submit()
+    }
 
 
+    const onChange = evt => {
+        const {name, value, type, checked} = evt.target
+        const valueToUse = type === 'checkbox' ? checked : value
 
+        change(name, valueToUse)
+    }
 
 
 
     return(
         //Header
-        <div className = 'form-page'>
+        <form className = 'form-page' onSubmit = {onSubmit}>
+            <div className = 'form-group submit'>
          <header className = 'home-header'>
             <h1>Lambda Eats</h1>
             <div className = 'header-buttons'>
@@ -23,6 +38,7 @@ export default function Form(props){
             <button>Help</button>
             </div>
         </header>
+        </div>
 
         {/* build pizza image and text portion*/}
         <div className = 'pizza-build'>
@@ -37,7 +53,11 @@ export default function Form(props){
         {/* ////////// DROPDOWN ////////// */}
 
         <label htmlFor = 'size'>
-            <select id = 'size' name = 'size'>
+            <select
+             name = 'size'
+             onChange={onChange}
+             value = {values.size}
+             >
                 <option value = ''> -- Select a Size --</option>
                 <option value = 'Small'> Small</option>
                 <option value = 'Medium'> Medium</option>
@@ -50,12 +70,14 @@ export default function Form(props){
         {/* ////////// RADIO BUTTONS ////////// */}
         {/* ////////// RADIO BUTTONS ////////// */}
         {/* ////////// RADIO BUTTONS ////////// */}
-        <div className = 'radio-btns'>
+        <div className = 'radioBtns'>
         <label>Original Red 
             <input 
             type = 'radio'
             name = 'sauce'
             value = 'originalRed'
+            onChange={onChange}
+            checked={values.sauce === 'originalRed'}
             />
         </label>
 
@@ -64,6 +86,8 @@ export default function Form(props){
             type = 'radio'
             name = 'sauce'
             value = 'garlicRanch'
+            onChange={onChange}
+            checked={values.sauce === 'garlicRanch'}
             />
         </label>
 
@@ -72,6 +96,9 @@ export default function Form(props){
             type = 'radio'
             name = 'sauce'
             value = 'bbqSauce'
+            onChange={onChange}
+            checked={values.sauce === 'bbqSauce'}
+
             />
         </label>
 
@@ -80,6 +107,8 @@ export default function Form(props){
             type = 'radio'
             name = 'sauce'
             value = 'spinachAlfredo'
+            onChange={onChange}
+            checked={values.sauce === 'spinachAlfredo'}
             />
         </label>
         </div>
@@ -94,13 +123,17 @@ export default function Form(props){
             <input 
             type = 'checkbox'
             name = 'peperoni'
+            onChange = {onChange}
+            checked = {values.peperoni}
             />
         </label>
 
         <label>Sausage
             <input 
             type = 'checkbox'
-            name = 'Sausage'
+            name = 'sausage'
+            onChange = {onChange}
+            checked = {values.sausage}
             />
         </label>
 
@@ -108,13 +141,8 @@ export default function Form(props){
             <input 
             type = 'checkbox'
             name = 'canadianBacon'
-            />
-        </label>
-
-        <label>Pepperoni
-            <input 
-            type = 'checkbox'
-            name = 'peperoni'
+            onChange = {onChange}
+            checked = {values.canadianBacon}
             />
         </label>
 
@@ -122,6 +150,8 @@ export default function Form(props){
             <input 
             type = 'checkbox'
             name = 'spicyitaly'
+            onChange = {onChange}
+            checked = {values.spicyitaly}
             />
         </label>
 
@@ -129,6 +159,8 @@ export default function Form(props){
             <input 
             type = 'checkbox'
             name = 'grilledChicken'
+            onChange = {onChange}
+            checked = {values.grilledChicken}
             />
         </label>
 
@@ -136,6 +168,8 @@ export default function Form(props){
             <input 
             type = 'checkbox'
             name = 'onions'
+            onChange = {onChange}
+            checked = {values.onions}
             />
         </label>
 
@@ -143,6 +177,8 @@ export default function Form(props){
             <input 
             type = 'checkbox'
             name = 'greenPepper'
+            onChange = {onChange}
+            checked = {values.greenPepper}
             />
         </label>
 
@@ -150,6 +186,8 @@ export default function Form(props){
             <input 
             type = 'checkbox'
             name = 'dicedTomatoes'
+            onChange = {onChange}
+            checked = {values.dicedTomatoes}
             />
         </label>
 
@@ -157,13 +195,73 @@ export default function Form(props){
             <input 
             type = 'checkbox'
             name = 'blackOlives'
+            onChange = {onChange}
+            checked = {values.blackOlives}
             />
         </label>
 
+        <label>Roasted Garlic
+            <input 
+            type = 'checkbox'
+            name = 'roastedGarlic'
+            onChange = {onChange}
+            checked = {values.roastedGarlic}
+            />
+        </label>
+
+        <label>Artichoke Hearts
+            <input 
+            type = 'checkbox'
+            name = 'artichokeHearts'
+            onChange = {onChange}
+            checked = {values.artichokeHearts}
+            />
+        </label>
+
+        <label>Three Cheese
+            <input 
+            type = 'checkbox'
+            name = 'threeCheese'
+            onChange = {onChange}
+            checked = {values.threeCheese}
+            />
+        </label>
+
+        <label>Pineapple
+            <input 
+            type = 'checkbox'
+            name = 'pineapple'
+            onChange = {onChange}
+            checked = {values.pineapple}
+            />
+        </label>
+
+        <label>Extra Cheese
+            <input 
+            type = 'checkbox'
+            name = 'extraCheese'
+            onChange = {onChange}
+            checked = {values.extraCheese}
+            />
+        </label>
+        </div>
+
+        <div className = 'special-instuctions'>
+        <h2>Special Instructions</h2>
+        {/* ////////// TEXT INPUTS ////////// */}
+        {/* ////////// TEXT INPUTS ////////// */}
+        {/* ////////// TEXT INPUTS ////////// */}
+
+        <input
+        name = 'orderInput'
+        type = 'text'
+        placeholder = "Anything else?"
+        onChange = {onChange}
+        value = {values.orderInput}
+        />
+        <button>Add to Order</button>
         </div>
     </div>
-
-
-</div>
+</form>
     )
 }

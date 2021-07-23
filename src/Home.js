@@ -3,10 +3,8 @@ import Pizza from './Pizza.jpg'
 import {Link} from 'react-router-dom'
 
 
-export default function Home(props){
+export default function Home(){
     
-
-
     return (
     <div className = 'home-page'>
         <header className = 'home-header'>
@@ -20,7 +18,7 @@ export default function Home(props){
             <img src = {Pizza} alt='pizzaImg'/>
         </div>
         <div className = 'img-content'>
-            <h1>Your favorite food, deliverd while coding!</h1>
+            <h1>Your favorite food, delivered while coding!</h1>
 
             <Link to= "/Form">
             <button> Create Your Own Pizza </button>
